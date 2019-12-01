@@ -12,7 +12,6 @@ function App() {
     return (
         <Router history={history}>
             <Routes />
-            <GlobalStyle />
         </Router>
     );
 }

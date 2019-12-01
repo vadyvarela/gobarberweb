@@ -12,9 +12,9 @@ export default function SignUp() {
                 <input type="email" placeholder="Seu email" />
                 <input type="password" placeholder="Sua senha secreta" />
 
-                <button type="submit">Cria conta</button>
+                <button type="submit">Acessar</button>
 
-                <Link to="/"> Ja tenho login </Link>
+                <Link to="/register"> Crie uma conta gratuita </Link>
             </form>
         </>
     );
