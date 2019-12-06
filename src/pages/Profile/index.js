@@ -3,7 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 
 import { MdPowerSettingsNew, MdAutorenew } from 'react-icons/md';
+
+import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
+
+import AvatarInput from './AvatarInput';
 
 import { Container } from './styles';
 
@@ -15,9 +19,14 @@ export default function Profile() {
         dispatch(updateProfileRequest(data));
     }
 
+    function handleSignOut() {
+        dispatch(signOut());
+    }
+
     return (
         <Container>
             <Form initialData={profile} onSubmit={handleSubmit}>
+                <AvatarInput name="avatar_id" />
                 <Input name="name" placeholder="Nome completo" />
                 <Input name="email" placeholder="Seu endereço de email" />
                 <hr />
@@ -41,7 +50,7 @@ export default function Profile() {
                     <MdAutorenew color="#fff" size={25} />
                 </button>
             </Form>
-            <button type="button">
+            <button type="button" onClick={handleSignOut}>
                 <MdPowerSettingsNew color="#fff" size={25} />
             </button>
         </Container>
