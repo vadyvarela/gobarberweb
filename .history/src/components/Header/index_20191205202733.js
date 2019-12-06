@@ -18,7 +18,7 @@ export default function Header() {
                     <Notifications />
                     <Profile>
                         <div>
-                            <strong>Vady Varela</strong>
+                            <stron>Vady Varela</stron>
                             <Link to="/profile">Meu Perfil</Link>
                         </div>
                         <img

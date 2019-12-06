@@ -59,8 +59,8 @@ export default function Notification() {
 
     return (
         <Container>
-            <Badge onClick={handleToggleVisible} hasUnread={hasUnread}>
-                <MdNotifications color="#7159c1" size={25} />
+            <Badge onClick={handleToggleVisible} hasUnreade={hasUnread}>
+                <MdNotifications color="#7159c1" size={20} />
             </Badge>
 
             <NotificationList visible={visible}>
@@ -71,7 +71,7 @@ export default function Notification() {
                             unread={!notification.read}
                         >
                             <p> {notification.content} </p>
-                            <time> {notification.timeDistance} </time>
+                            <tile> {notification.timeDistance} </tile>
                             {!notification.read && (
                                 <button
                                     type="button"

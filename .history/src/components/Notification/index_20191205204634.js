@@ -17,6 +17,13 @@ export default function Notification() {
     const [visible, setVisible] = useState(false);
     const [notifications, setNotifications] = useState([]);
 
+    // const hasUnread = useMemo(
+    //     () =>
+    //         !!notifications.find(notification => notification.read === false)[
+    //             notifications
+    //         ]
+    // );
+
     const hasUnread = useMemo(
         () => !!notifications.find(notification => notification.read === false),
         [notifications]
@@ -59,8 +66,8 @@ export default function Notification() {
 
     return (
         <Container>
-            <Badge onClick={handleToggleVisible} hasUnread={hasUnread}>
-                <MdNotifications color="#7159c1" size={25} />
+            <Badge onClick={handleToggleVisible} hasUnreade={hasUnread}>
+                <MdNotifications color="#7159c1" size={20} />
             </Badge>
 
             <NotificationList visible={visible}>
@@ -71,7 +78,7 @@ export default function Notification() {
                             unread={!notification.read}
                         >
                             <p> {notification.content} </p>
-                            <time> {notification.timeDistance} </time>
+                            <tile> {notification.timeDistance} </tile>
                             {!notification.read && (
                                 <button
                                     type="button"

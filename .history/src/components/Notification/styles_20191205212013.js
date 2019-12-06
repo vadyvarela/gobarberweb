@@ -7,10 +7,10 @@ export const Container = styled.div`
     padding: 10px;
 `;
 
-export const Badge = styled.button`
+export const Badge = styled.div`
     background: none;
     border: 0;
-    position: relative;
+    position: realtive;
 
     ${props =>
         props.hasUnread &&

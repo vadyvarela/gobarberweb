@@ -4,13 +4,12 @@ import { lighten } from 'polished';
 
 export const Container = styled.div`
     position: relative;
-    padding: 10px;
 `;
 
-export const Badge = styled.button`
+export const Badge = styled.div`
     background: none;
     border: 0;
-    position: relative;
+    position: realtive;
 
     ${props =>
         props.hasUnread &&
@@ -33,10 +32,10 @@ export const NotificationList = styled.div`
     width: 260px;
     left: calc(50% - 130px);
     top: calc(100% + 30px);
-    background: #7159c187;
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 4px;
     padding: 15px 5px;
-    display: ${props => (props.visible ? 'block' : 'none')};
+    display: ${props => (prop.visible ? 'block' : 'none')};
 
     &::before {
         content: '';
@@ -47,7 +46,7 @@ export const NotificationList = styled.div`
         height: 0;
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        border-bottom: 20px solid #7159c187;
+        border-bottom: 20px solid transparent;
     }
 `;
 
@@ -89,7 +88,6 @@ export const Notifications = styled.div`
         css`
             &::after {
                 content: '';
-                margin-left: 10px;
                 display: inline-block;
                 width: 8px;
                 height: 8px;

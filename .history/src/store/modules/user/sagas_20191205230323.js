@@ -16,11 +16,10 @@ export function* updateProfile({ payload }) {
         //     ...(rest.oldPassword ? rest : { ...rest }),
         // };
 
-        const profile = {
-            name,
-            email,
-            ...(rest.oldPassword ? rest : {}),
-        };
+        const profile = Object.assign(
+            {name, email}
+            rest.oldPassword ? rest : {}
+        )
 
         const response = yield call(api.put, 'users', profile);
 

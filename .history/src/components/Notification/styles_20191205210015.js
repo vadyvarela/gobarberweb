@@ -7,10 +7,10 @@ export const Container = styled.div`
     padding: 10px;
 `;
 
-export const Badge = styled.button`
+export const Badge = styled.div`
     background: none;
     border: 0;
-    position: relative;
+    position: realtive;
 
     ${props =>
         props.hasUnread &&
@@ -47,7 +47,7 @@ export const NotificationList = styled.div`
         height: 0;
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        border-bottom: 20px solid #7159c187;
+        border-bottom: 20px solid transparent;
     }
 `;
 

@@ -1,19 +1,14 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
-
 import { MdPowerSettingsNew, MdAutorenew } from 'react-icons/md';
-import { updateProfileRequest } from '~/store/modules/user/actions';
 
 import { Container } from './styles';
 
 export default function Profile() {
-    const dispatch = useDispatch();
     const profile = useSelector(state => state.user.profile);
 
-    function handleSubmit(data) {
-        dispatch(updateProfileRequest(data));
-    }
+    function handleSubmit(data) {}
 
     return (
         <Container>
