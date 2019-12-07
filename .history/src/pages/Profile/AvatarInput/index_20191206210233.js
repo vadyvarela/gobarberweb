@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@rocketseat/unform';
 import api from '~/services/api';
 
@@ -19,8 +19,7 @@ export default function AvatarInput() {
                 path: 'dataset.file',
             });
         }
-        // eslint-disable-next-line
-      }, [ref]);
+    }, [ref, registerField]);
 
     async function handleChange(e) {
         const data = new FormData();
@@ -35,7 +34,7 @@ export default function AvatarInput() {
 
     return (
         <Container>
-            <label htmlFor="avatar">
+            <label htmlFor="">
                 <img
                     src={
                         preview ||

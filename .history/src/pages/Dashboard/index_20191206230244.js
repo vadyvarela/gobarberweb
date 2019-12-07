@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
     format,
     subDays,
@@ -7,22 +7,25 @@ import {
     setMinutes,
     setSeconds,
     isBefore,
+    isEqual,
     parseISO,
 } from 'date-fns';
-import pt from 'date-fns/locale/pt';
 import { utcToZonedTime } from 'date-fns-tz';
+import pt from 'date-fns/locale/pt';
+
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import api from '~/services/api';
+
 import { Container, Time } from './styles';
 
-const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
 export default function Dashboard() {
     const [schedule, setSchedule] = useState([]);
     const [date, setDate] = useState(new Date());
 
     const dateFormatted = useMemo(
-        () => format(date, "d 'de' MMMM 'de ' yyyy", { locale: pt }),
+        () => format(date, "d 'de ' MMMM 'de ' YY", { locale: pt }),
         [date]
     );
 
@@ -33,7 +36,6 @@ export default function Dashboard() {
             });
 
             const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
             const data = range.map(hour => {
                 const checkDate = setSeconds(
                     setMinutes(setHours(date, hour), 0),
@@ -44,10 +46,8 @@ export default function Dashboard() {
                 return {
                     time: `${hour}:00h`,
                     past: isBefore(compareDate, new Date()),
-                    appointment: response.data.find(
-                        a =>
-                            parseISO(a.date).toString() ===
-                            compareDate.toString()
+                    appointment: response.data.find(a =>
+                        isEqual(parseISO(a.date), compareDate)
                     ),
                 };
             });
@@ -69,29 +69,20 @@ export default function Dashboard() {
     return (
         <Container>
             <header>
-                <button type="button">
-                    <MdChevronLeft
-                        size={36}
-                        color="FFF"
-                        onClick={handlePrevDay}
-                    />
+                <button type="button" onClick={handlePrevDay}>
+                    <MdChevronLeft size={36} color="#fff" />
                 </button>
                 <strong>{dateFormatted}</strong>
-                <button type="button">
-                    <MdChevronRight
-                        size={36}
-                        color="FFF"
-                        onClick={handleNextDay}
-                    />
+                <button type="button" onClick={handleNextDay}>
+                    <MdChevronRight size={36} color="#fff" />
                 </button>
             </header>
-
             <ul>
                 {schedule.map(time => (
                     <Time
                         key={time.time}
                         past={time.past}
-                        available={!time.appointment}
+                        availabel={!time.appointment}
                     >
                         <strong>{time.time}</strong>
                         <span>

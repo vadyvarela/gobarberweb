@@ -47,7 +47,7 @@ export const NotificationList = styled.div`
         height: 0;
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        border-bottom: 20px solid #7159c1;
+        border-bottom: 20px solid #7159c187;
     }
 `;
 

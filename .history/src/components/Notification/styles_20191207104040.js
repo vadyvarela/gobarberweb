@@ -33,7 +33,7 @@ export const NotificationList = styled.div`
     width: 260px;
     left: calc(50% - 130px);
     top: calc(100% + 30px);
-    background: #7159c1;
+    background: #000;
     border-radius: 4px;
     padding: 15px 5px;
     display: ${props => (props.visible ? 'block' : 'none')};

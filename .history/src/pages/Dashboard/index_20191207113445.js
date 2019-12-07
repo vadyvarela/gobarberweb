@@ -7,6 +7,7 @@ import {
     setMinutes,
     setSeconds,
     isBefore,
+    isEqual,
     parseISO,
 } from 'date-fns';
 import pt from 'date-fns/locale/pt';
@@ -22,7 +23,7 @@ export default function Dashboard() {
     const [date, setDate] = useState(new Date());
 
     const dateFormatted = useMemo(
-        () => format(date, "d 'de' MMMM 'de ' yyyy", { locale: pt }),
+        () => format(date, "d 'de' MMMM", { locale: pt }),
         [date]
     );
 

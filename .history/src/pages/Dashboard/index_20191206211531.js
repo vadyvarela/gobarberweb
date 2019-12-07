@@ -7,12 +7,14 @@ import {
     setMinutes,
     setSeconds,
     isBefore,
+    isEqual,
     parseISO,
 } from 'date-fns';
-import pt from 'date-fns/locale/pt';
 import { utcToZonedTime } from 'date-fns-tz';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import pt from 'date-fns/locale/pt';
+import { MdChevronRight, MdChevronLeft } from 'react-icons/md';
 import api from '~/services/api';
+
 import { Container, Time } from './styles';
 
 const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -22,13 +24,13 @@ export default function Dashboard() {
     const [date, setDate] = useState(new Date());
 
     const dateFormatted = useMemo(
-        () => format(date, "d 'de' MMMM 'de ' yyyy", { locale: pt }),
+        () => format(date, "d, 'de ' MMMM", { locale: pt }),
         [date]
     );
 
     useEffect(() => {
         async function loadSchedule() {
-            const response = await api.get('schedule', {
+            const response = await api.get('schedules', {
                 params: { date },
             });
 
@@ -44,14 +46,11 @@ export default function Dashboard() {
                 return {
                     time: `${hour}:00h`,
                     past: isBefore(compareDate, new Date()),
-                    appointment: response.data.find(
-                        a =>
-                            parseISO(a.date).toString() ===
-                            compareDate.toString()
-                    ),
+                    appointment: response.data.find(a => {
+                        isEqual(parseISO(a.date), compareDate);
+                    }),
                 };
             });
-
             setSchedule(data);
         }
 
@@ -69,20 +68,12 @@ export default function Dashboard() {
     return (
         <Container>
             <header>
-                <button type="button">
-                    <MdChevronLeft
-                        size={36}
-                        color="FFF"
-                        onClick={handlePrevDay}
-                    />
+                <button type="button" onClick={handlePrevDay}>
+                    <MdChevronLeft size={36} color="#fff" />
                 </button>
-                <strong>{dateFormatted}</strong>
-                <button type="button">
-                    <MdChevronRight
-                        size={36}
-                        color="FFF"
-                        onClick={handleNextDay}
-                    />
+                <button type="button" onClick={handleNextDay}>
+                    <strong> {dateFormatted} </strong>
+                    <MdChevronRight size={36} color="#fff" />
                 </button>
             </header>
 
@@ -93,11 +84,11 @@ export default function Dashboard() {
                         past={time.past}
                         available={!time.appointment}
                     >
-                        <strong>{time.time}</strong>
+                        <strong> {time.time} </strong>
                         <span>
                             {time.appointment
                                 ? time.appointment.user.name
-                                : 'Em aberto'}
+                                : 'Horario disponivel'}{' '}
                         </span>
                     </Time>
                 ))}

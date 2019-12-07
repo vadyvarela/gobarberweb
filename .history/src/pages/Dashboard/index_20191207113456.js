@@ -22,7 +22,7 @@ export default function Dashboard() {
     const [date, setDate] = useState(new Date());
 
     const dateFormatted = useMemo(
-        () => format(date, "d 'de' MMMM 'de ' yyyy", { locale: pt }),
+        () => format(date, "d 'de' MMMM", { locale: pt }),
         [date]
     );
 

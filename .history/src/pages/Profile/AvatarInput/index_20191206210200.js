@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@rocketseat/unform';
-import api from '~/services/api';
+import api from '~/services/api'
 
 import { Container } from './styles';
 
@@ -12,17 +12,16 @@ export default function AvatarInput() {
     const ref = useRef();
 
     useEffect(() => {
-        if (ref.current) {
+        if(ref.current){
             registerField({
                 name: 'avatar_id',
                 ref: ref.current,
                 path: 'dataset.file',
             });
         }
-        // eslint-disable-next-line
-      }, [ref]);
+    }, [ref, registerField])
 
-    async function handleChange(e) {
+    function async handleChange(e) {
         const data = new FormData();
         data.append('file', e.target.files[0]);
 
@@ -35,14 +34,8 @@ export default function AvatarInput() {
 
     return (
         <Container>
-            <label htmlFor="avatar">
-                <img
-                    src={
-                        preview ||
-                        'https://api.adorable.io/avatars/50/abott@adorable.png'
-                    }
-                    alt=""
-                />
+            <label htmlFor="">
+                <img src={preview || 'https://api.adorable.io/avatars/50/abott@adorable.png' } alt="" />
 
                 <input
                     type="file"

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useField } from '@rocketseat/unform';
 import api from '~/services/api';
 
@@ -11,16 +11,15 @@ export default function AvatarInput() {
     const [preview, setPreview] = useState(defaultValue && defaultValue.url);
     const ref = useRef();
 
-    useEffect(() => {
-        if (ref.current) {
-            registerField({
-                name: 'avatar_id',
-                ref: ref.current,
-                path: 'dataset.file',
-            });
-        }
-        // eslint-disable-next-line
-      }, [ref]);
+    // useEffect(() => {
+    //     if (ref.current) {
+    //         registerField({
+    //             name: 'avatar_id',
+    //             ref: ref.current,
+    //             path: 'dataset.file',
+    //         });
+    //     }
+    // }, [ref, registerField]);
 
     async function handleChange(e) {
         const data = new FormData();
