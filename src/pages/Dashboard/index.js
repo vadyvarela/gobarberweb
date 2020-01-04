@@ -15,7 +15,7 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import api from '~/services/api';
 import { Container, Time } from './styles';
 
-const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+const range = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
 export default function Dashboard() {
     const [schedule, setSchedule] = useState([]);
